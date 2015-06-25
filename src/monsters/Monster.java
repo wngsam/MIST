@@ -44,6 +44,7 @@ public abstract class Monster {
     private int deltaChance;
     private int epsilonChance;
     
+    public abstract void setStats();
     public abstract int attack();
     public abstract int useSkillAlpha();
     public abstract int useSkillBeta();

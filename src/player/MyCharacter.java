@@ -14,7 +14,7 @@ import jobs.Novice;
  *
  * @author Desktop
  */
-public class Character {
+public class MyCharacter {
     
     private int level=1;
     private int exp=0;
