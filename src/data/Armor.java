@@ -22,6 +22,10 @@ public class Armor {
     private int defense;
     private int dodge; //Dodge% = 100-(Enemy's Accuracy-Dodge). Dodge physical only.
 
+    public Armor(String name){
+        this.name=name;
+    }
+    
     public Armor(String name, int cost, String picture, int levelReq, String jobReq, int health, int mana, int defense, int dodge) {
         this.name = name;
         this.cost = cost;

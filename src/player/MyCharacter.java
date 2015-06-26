@@ -40,12 +40,16 @@ public class MyCharacter {
     
     private int stats=5; //stat points
     
-    private Weapon weapon; //TODO: Novice Weapon
+    private Weapon weapon = new Weapon("none");
     private int weaponCounter=0;
-    private Armor armor; //TODO: Novice Armor
+    private Armor armor = new Armor("none");
     private int armorCounter=0;
     private Job job = new Novice();
-
+    
+    public void subtractGold(int amt){
+        gold-=amt;
+    }
+    
     public void setWeaponCounter(int weaponCounter) {
         this.weaponCounter = weaponCounter;
     }
@@ -56,10 +60,21 @@ public class MyCharacter {
     
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
+        damage+=weapon.getDamage();
+        accuracy+=weapon.getAccuracy();
+        magicDamage+=weapon.getMagicDamage();
+        criticalChance+=weapon.getCriticalChance();
+        criticalDamage+=weapon.getCriticalDamage();
     }
 
     public void setArmor(Armor armor) {
         this.armor = armor;
+        health+=armor.getHealth();
+        currentHealth=health;
+        mana+=armor.getMana();
+        currentMana=mana;
+        defense+=armor.getDefense();
+        dodge+=armor.getDodge();
     }
     
     public void addStr(){

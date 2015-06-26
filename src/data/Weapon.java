@@ -22,7 +22,11 @@ public class Weapon {
     private int magicDamage; //Calculated in magic skills.
     private int criticalChance; //Use as percentage/10.
     private int criticalDamage; //On top of normal damage %-wise.
-
+    
+    public Weapon(String name){
+        this.name=name;
+    }
+    
     public Weapon(String name, int cost, String picture, int levelReq, String jobReq, int damage, int accuracy, int magicDamage, int criticalChance, int criticalDamage) {
         this.name = name;
         this.cost = cost;

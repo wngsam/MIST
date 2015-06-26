@@ -102,6 +102,16 @@ public class SceneGenerator {
                 )
         );
         
+        Button buyWeapon = new Button("Buy");
+        buyWeapon.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                driver.getShop().buyWeapon(driver.getPlayer());
+                primaryStage.setScene(viewShop());
+            }
+        });
+        shop.getChildren().add(buyWeapon);
+        
         shop.getChildren().add(
             new Label(
                 armor.getName()+"\n"
@@ -114,6 +124,16 @@ public class SceneGenerator {
                 )
         );
         
+        Button buyArmor = new Button("Buy");
+        buyArmor.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                driver.getShop().buyArmor(driver.getPlayer());
+                primaryStage.setScene(viewShop());
+            }
+        });
+        shop.getChildren().add(buyArmor);
+        
         Button exit = new Button("EXIT");
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -122,6 +142,7 @@ public class SceneGenerator {
             }
         });
         shop.getChildren().add(exit);
+        
         return new Scene(shop, 800, 600);
     }
     
@@ -192,6 +213,13 @@ public class SceneGenerator {
             addStats.getChildren().addAll(str, mag, dex, agi, luk);
             charPage.getChildren().add(addStats);
         }
+        
+        charPage.getChildren().add(
+                new Label(
+                    "Weapon: "+myChar.getWeapon().getName()+"\n"
+                    +"Armor: "+myChar.getArmor().getName()+"\n"
+                )
+            );
         
         Button exit = new Button("EXIT");
         exit.setOnAction(new EventHandler<ActionEvent>() {
