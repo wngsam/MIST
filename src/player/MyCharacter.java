@@ -42,5 +42,95 @@ public class MyCharacter {
     private Weapon weapon; //TODO: Novice Weapon
     private Armor armor; //TODO: Novice Armor
     private Job job = new Novice();
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getDodge() {
+        return dodge;
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public int getMagicDamage() {
+        return magicDamage;
+    }
+
+    public int getCriticalChance() {
+        return criticalChance;
+    }
+
+    public int getCriticalDamage() {
+        return criticalDamage;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getMagic() {
+        return magic;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public int getAgility() {
+        return agility;
+    }
+
+    public int getLuck() {
+        return luck;
+    }
+
+    public int getStats() {
+        return stats;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public Job getJob() {
+        return job;
+    }
+    
+    
     
 }
