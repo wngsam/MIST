@@ -38,7 +38,7 @@ public class MyCharacter {
     private int agility=5; //+1 critical chance, +1 dodge
     private int luck=5; //+1 dodge, +1 critical damage
     
-    private int stats=0; //stat points
+    private int stats=5; //stat points
     
     private Weapon weapon; //TODO: Novice Weapon
     private Armor armor; //TODO: Novice Armor

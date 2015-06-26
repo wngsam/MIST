@@ -91,7 +91,7 @@ public class SceneGenerator {
                         +"Atk: "+myChar.getDamage()+", MAtk: "+myChar.getMagicDamage()+"\n"
                         +"Def: "+myChar.getDefense()+"\n"
                         +"Accuracy: "+myChar.getAccuracy()+", Dodge: "+myChar.getDodge()+"\n"
-                        +"Critical %: "+myChar.getCriticalChance()+", Critical Dmg: "+myChar.getCriticalDamage()+"\n\n"
+                        +"Critical Chance: "+myChar.getCriticalChance()+", Critical Dmg: "+myChar.getCriticalDamage()+"\n\n"
                         +"STR: "+myChar.getStrength()+"\n"
                         +"MAG: "+myChar.getMagic()+"\n"
                         +"DEX: "+myChar.getDexterity()+"\n"
@@ -106,6 +106,7 @@ public class SceneGenerator {
                 @Override
                 public void handle(ActionEvent event) {
                     myChar.addStr();
+                    primaryStage.setScene(characterPage());
                 }
             });
             Button mag = new Button("+MAG");
@@ -113,6 +114,7 @@ public class SceneGenerator {
                 @Override
                 public void handle(ActionEvent event) {
                     myChar.addMag();
+                    primaryStage.setScene(characterPage());
                 }
             });
             Button dex = new Button("+DEX");
@@ -120,6 +122,7 @@ public class SceneGenerator {
                 @Override
                 public void handle(ActionEvent event) {
                     myChar.addDex();
+                    primaryStage.setScene(characterPage());
                 }
             });
             Button agi = new Button("+AGI");
@@ -127,6 +130,7 @@ public class SceneGenerator {
                 @Override
                 public void handle(ActionEvent event) {
                     myChar.addAgi();
+                    primaryStage.setScene(characterPage());
                 }
             });
             Button luk = new Button("+LUK");
@@ -134,6 +138,7 @@ public class SceneGenerator {
                 @Override
                 public void handle(ActionEvent event) {
                     myChar.addLuk();
+                    primaryStage.setScene(characterPage());
                 }
             });
             HBox addStats = new HBox();
