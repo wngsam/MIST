@@ -44,7 +44,15 @@ public class MyCharacter {
     private int weaponCounter=0;
     private Armor armor = new Armor("none");
     private int armorCounter=0;
-    private Job job = new Novice();
+    private Job job = new Novice(this);
+    
+    public void subtractCurrentHP(int amt){
+        currentHealth-=amt;
+    }
+    
+    public void subtractCurrentMP(int amt){
+        currentMana-=amt;
+    }
     
     public void subtractGold(int amt){
         gold-=amt;
@@ -91,6 +99,7 @@ public class MyCharacter {
             stats--;
             magicDamage+=1;
             mana+=5;
+            currentMana=mana;
             magic++;
         }
     }

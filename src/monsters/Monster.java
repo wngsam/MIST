@@ -18,6 +18,8 @@ public abstract class Monster {
     private int expReward; //Dependent on Level.
     
     private int health;
+    private int currentHealth;
+    private int currentMana;
     private int mana;
     private int damage;
     private int defense;
@@ -38,19 +40,85 @@ public abstract class Monster {
     private String skillNameDelta;
     private String skillNameEpsilon;
     
-    //Chance to use skills. Totals 100. Use as percentage.
+    //Chance to use skills. Totals <100 (the rest is normal atk chance). Use as percentage.
     private int alphaChance;
     private int betaChance;
     private int deltaChance;
     private int epsilonChance;
+
+    public Monster(String name, int level, int health, int mana, int damage, int defense, int dodge, int accuracy, int magicDamage, int criticalChance, int criticalDamage, String skillNameAlpha, String skillNameBeta, String skillNameDelta, String skillNameEpsilon, int alphaChance, int betaChance, int deltaChance, int epsilonChance) {
+        this.name = name;
+        this.level = level;
+        this.health = health;
+        this.mana = mana;
+        this.damage = damage;
+        this.defense = defense;
+        this.dodge = dodge;
+        this.accuracy = accuracy;
+        this.magicDamage = magicDamage;
+        this.criticalChance = criticalChance;
+        this.criticalDamage = criticalDamage;
+        this.skillNameAlpha = skillNameAlpha;
+        this.skillNameBeta = skillNameBeta;
+        this.skillNameDelta = skillNameDelta;
+        this.skillNameEpsilon = skillNameEpsilon;
+        this.alphaChance = alphaChance;
+        this.betaChance = betaChance;
+        this.deltaChance = deltaChance;
+        this.epsilonChance = epsilonChance;
+    }
     
-    public abstract void setStats();
     public abstract int attack();
     public abstract int useSkillAlpha();
     public abstract int useSkillBeta();
     public abstract int useSkillDelta();
     public abstract int useSkillEpsilon();
 
+    public void setStats(int str, int mag, int dex, int agi, int luk){
+            damage+=(5*str);
+            health+=(5*str);
+            currentHealth=health;
+
+            magicDamage+=mag;
+            mana+=(5*mag);
+            currentMana=mana;
+			
+            accuracy+=(5*dex);
+            defense+=(2*dex);
+
+            criticalChance+=agi;
+            dodge+=agi;
+
+            dodge+=luk;
+            criticalDamage+=luk;
+    }
+    
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
+    }
+
+    public int getCurrentMana() {
+        return currentMana;
+    }
+
+    public void setCurrentMana(int currentMana) {
+        this.currentMana = currentMana;
+    }
+
+    
+    
+    public void subtractCurrentHP(int amt){
+        currentHealth-=amt;
+    }
+    
+    public void subtractCurrentMP(int amt){
+        currentMana-=amt;
+    }
+    
     public String getPicture() {
         return picture;
     }

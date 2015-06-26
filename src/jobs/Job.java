@@ -5,6 +5,8 @@
  */
 package jobs;
 
+import player.MyCharacter;
+
 /**
  *
  * @author Desktop
@@ -13,6 +15,7 @@ public abstract class Job {
     
     private String picture;
     private String name;
+    private MyCharacter myChar;
     
     private String skillNameAlpha;
     private String skillNameBeta;
@@ -25,6 +28,19 @@ public abstract class Job {
     public abstract int useSkillDelta();
     public abstract int useSkillEpsilon();
 
+    public Job(MyCharacter myChar, String name, String skillNameAlpha, String skillNameBeta, String skillNameDelta, String skillNameEpsilon){
+        this.myChar = myChar;
+        this.name = name;
+        this.skillNameAlpha=skillNameAlpha;
+        this.skillNameBeta=skillNameBeta;
+        this.skillNameDelta=skillNameDelta;
+        this.skillNameEpsilon=skillNameEpsilon;
+    }
+
+    public MyCharacter getMyChar() {
+        return myChar;
+    }
+    
     public String getPicture() {
         return picture;
     }

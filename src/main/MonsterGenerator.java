@@ -5,10 +5,17 @@
  */
 package main;
 
+import monsters.Lifter;
+import monsters.Monster;
+
 /**
  *
  * @author Desktop
  */
 public class MonsterGenerator {
+    
+    public Monster generate(int level){
+        return new Lifter(level);
+    }
     
 }
