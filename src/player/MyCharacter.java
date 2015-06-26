@@ -44,6 +44,14 @@ public class MyCharacter {
     private Armor armor; //TODO: Novice Armor
     private Job job = new Novice();
 
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+    
     public void addStr(){
         if(stats>0){
             stats--;

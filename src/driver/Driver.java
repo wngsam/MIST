@@ -14,11 +14,16 @@ import player.MyCharacter;
  */
 public class Driver {
     
-    private final MyCharacter player = new MyCharacter();
+    
     private final GearGenerator itemGen = new GearGenerator();
+    private final MyCharacter player = new MyCharacter();
     private final MonsterGenerator monGen = new MonsterGenerator();
     private final Experience expChart = new Experience();
 
+    public Driver(){
+        
+    }
+    
     public MyCharacter getPlayer() {
         return player;
     }
