@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package driver;
+package main;
 
+import data.Armor;
+import data.Weapon;
 import java.util.Arrays;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,6 +46,7 @@ public class SceneGenerator {
             @Override
             public void handle(ActionEvent event) {
                 //primaryStage.setTitle("Buying!");
+                primaryStage.setScene(viewShop());
             }
         });
         buttons[1]=shop;
@@ -79,12 +82,56 @@ public class SceneGenerator {
         primaryStage.show();
     }
     
+    public Scene viewShop(){
+        VBox shop = new VBox();
+        
+        
+        Weapon weapon = driver.getShop().displayWeapon(driver.getPlayer().getWeaponCounter());
+        Armor armor = driver.getShop().displayArmor(driver.getPlayer().getArmorCounter());
+        
+        shop.getChildren().add(
+            new Label(
+                weapon.getName()+"\n"
+                +"Cost: "+weapon.getCost()+"G \n"
+                +"Level: "+weapon.getLevelReq()+"   Job: "+weapon.getJobReq()+"\n"
+                +"Damage: "+weapon.getDamage()+"\n"
+                +"Acc: "+weapon.getAccuracy()+"\n"
+                +"M.Atk: "+weapon.getMagicDamage()+"\n"
+                +"Crit Chance: "+weapon.getCriticalChance()+"\n"
+                +"Crit Dmg: "+weapon.getCriticalDamage()+"\n"
+                )
+        );
+        
+        shop.getChildren().add(
+            new Label(
+                armor.getName()+"\n"
+                +"Cost: "+armor.getCost()+"G \n"
+                +"Level: "+armor.getLevelReq()+"   Job: "+armor.getJobReq()+"\n"
+                +"Health: "+armor.getHealth()+"\n"
+                +"Mana: "+armor.getMana()+"\n"
+                +"Def: "+armor.getDefense()+"\n"
+                +"Dodge: "+armor.getDodge()+"\n"
+                )
+        );
+        
+        Button exit = new Button("EXIT");
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(mainScene);
+            }
+        });
+        shop.getChildren().add(exit);
+        return new Scene(shop, 800, 600);
+    }
+    
     public Scene characterPage(){
         MyCharacter myChar = driver.getPlayer();
         VBox charPage = new VBox();
         
         charPage.getChildren().add(
-                new Label("Level: "+myChar.getLevel()+"\n"
+                new Label(
+                        "Level: "+myChar.getLevel()+"\n"
                         +"EXP: "+myChar.getExp()+"\n"
                         +"Gold: "+myChar.getGold()+"\n\n"
                         +"HP: "+myChar.getHealth()+", MP: "+myChar.getMana()+"\n"

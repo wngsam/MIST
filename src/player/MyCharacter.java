@@ -41,9 +41,19 @@ public class MyCharacter {
     private int stats=5; //stat points
     
     private Weapon weapon; //TODO: Novice Weapon
+    private int weaponCounter=0;
     private Armor armor; //TODO: Novice Armor
+    private int armorCounter=0;
     private Job job = new Novice();
 
+    public void setWeaponCounter(int weaponCounter) {
+        this.weaponCounter = weaponCounter;
+    }
+
+    public void setArmorCounter(int armorCounter) {
+        this.armorCounter = armorCounter;
+    }
+    
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
@@ -92,6 +102,18 @@ public class MyCharacter {
             criticalDamage+=1;
             luck++;
         }
+    }
+
+    public int getCurrentMana() {
+        return currentMana;
+    }
+
+    public int getWeaponCounter() {
+        return weaponCounter;
+    }
+
+    public int getArmorCounter() {
+        return armorCounter;
     }
     
     public int getLevel() {

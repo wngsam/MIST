@@ -35,5 +35,47 @@ public class Weapon {
         this.criticalChance = criticalChance;
         this.criticalDamage = criticalDamage;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public int getLevelReq() {
+        return levelReq;
+    }
+
+    public String getJobReq() {
+        return jobReq;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public int getMagicDamage() {
+        return magicDamage;
+    }
+
+    public int getCriticalChance() {
+        return criticalChance;
+    }
+
+    public int getCriticalDamage() {
+        return criticalDamage;
+    }
+    
+    
     
 }

@@ -33,5 +33,43 @@ public class Armor {
         this.defense = defense;
         this.dodge = dodge;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public int getLevelReq() {
+        return levelReq;
+    }
+
+    public String getJobReq() {
+        return jobReq;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMana() {
+        return mana;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getDodge() {
+        return dodge;
+    }
+    
+    
     
 }
