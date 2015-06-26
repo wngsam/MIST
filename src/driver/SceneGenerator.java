@@ -23,43 +23,42 @@ import player.MyCharacter;
 public class SceneGenerator {
     
     private final Driver driver = new Driver();
+    private Stage primaryStage;
+    private Scene mainScene;
     
-    public Scene createMainMenu(Stage primaryStage){
+    public void createMainMenu(Stage primaryStage){
+        this.primaryStage = primaryStage;
         Button[] buttons = new Button[4];
         
-        Button fight = new Button();
-        fight.setText("FIGHT");
+        Button fight = new Button("FIGHT");
         fight.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                primaryStage.setTitle("Mist Fight!");
+                //primaryStage.setTitle("Mist Fight!");
             }
         });
         buttons[0]=fight;
         
-        Button shop = new Button();
-        shop.setText("SHOP");
+        Button shop = new Button("SHOP");
         shop.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                primaryStage.setTitle("Buying!");
+                //primaryStage.setTitle("Buying!");
             }
         });
         buttons[1]=shop;
         
-        Button stats = new Button();
-        stats.setText("STATS");
+        Button stats = new Button("STATS");
         stats.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                primaryStage.setTitle("Viewing Stats!");
+                //primaryStage.setTitle("Viewing Stats!");
                 primaryStage.setScene(characterPage());
             }
         });
         buttons[2]=stats;
         
-        Button exit = new Button();
-        exit.setText("EXIT");
+        Button exit = new Button("EXIT");
         exit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -73,18 +72,85 @@ public class SceneGenerator {
         hbox.getChildren().addAll(Arrays.asList(buttons));
         vbox.getChildren().add(new Label("Welcome to MIST!"));
         vbox.getChildren().add(hbox);
-        return new Scene(vbox, 800, 600);
+        
+        primaryStage.setTitle("MIST!");
+        mainScene = new Scene(vbox, 800, 600);
+        primaryStage.setScene(mainScene);
+        primaryStage.show();
     }
     
     public Scene characterPage(){
         MyCharacter myChar = driver.getPlayer();
+        VBox charPage = new VBox();
         
-        VBox vbox = new VBox();
-        vbox.getChildren().add(new Label("Level: "+myChar.getLevel()));
-        vbox.getChildren().add(new Label("EXP: "+myChar.getExp()));
-        vbox.getChildren().add(new Label("Gold: "+myChar.getGold()));
+        charPage.getChildren().add(
+                new Label("Level: "+myChar.getLevel()+"\n"
+                        +"EXP: "+myChar.getExp()+"\n"
+                        +"Gold: "+myChar.getGold()+"\n\n"
+                        +"HP: "+myChar.getHealth()+", MP: "+myChar.getMana()+"\n"
+                        +"Atk: "+myChar.getDamage()+", MAtk: "+myChar.getMagicDamage()+"\n"
+                        +"Def: "+myChar.getDefense()+"\n"
+                        +"Accuracy: "+myChar.getAccuracy()+", Dodge: "+myChar.getDodge()+"\n"
+                        +"Critical %: "+myChar.getCriticalChance()+", Critical Dmg: "+myChar.getCriticalDamage()+"\n\n"
+                        +"STR: "+myChar.getStrength()+"\n"
+                        +"MAG: "+myChar.getMagic()+"\n"
+                        +"DEX: "+myChar.getDexterity()+"\n"
+                        +"AGI: "+myChar.getAgility()+"\n"
+                        +"LUK: "+myChar.getLuck()+"\n"
+                        +"Stat Points: "+myChar.getStats()+"\n"
+                ));
         
-        return new Scene(vbox, 800, 600);
+        if (myChar.getStats() > 0) {
+            Button str = new Button("+STR");
+            str.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    myChar.addStr();
+                }
+            });
+            Button mag = new Button("+MAG");
+            mag.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    myChar.addMag();
+                }
+            });
+            Button dex = new Button("+DEX");
+            dex.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    myChar.addDex();
+                }
+            });
+            Button agi = new Button("+AGI");
+            agi.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    myChar.addAgi();
+                }
+            });
+            Button luk = new Button("+LUK");
+            luk.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    myChar.addLuk();
+                }
+            });
+            HBox addStats = new HBox();
+            addStats.getChildren().addAll(str, mag, dex, agi, luk);
+            charPage.getChildren().add(addStats);
+        }
+        
+        Button exit = new Button("EXIT");
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(mainScene);
+            }
+        });
+        charPage.getChildren().add(exit);
+        
+        return new Scene(charPage, 800, 600);
     }
     
 }

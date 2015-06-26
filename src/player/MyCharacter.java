@@ -22,6 +22,7 @@ public class MyCharacter {
     
     private int currentHealth=175;
     private int health=175;
+    private int currentMana=50;
     private int mana=50;
     private int damage=35;
     private int defense=15;
@@ -43,6 +44,48 @@ public class MyCharacter {
     private Armor armor; //TODO: Novice Armor
     private Job job = new Novice();
 
+    public void addStr(){
+        if(stats>0){
+            stats--;
+            damage+=5;
+            health+=5;
+            currentHealth=health;
+            strength++;
+        }
+    }
+    public void addMag(){
+        if(stats>0){
+            stats--;
+            magicDamage+=1;
+            mana+=5;
+            magic++;
+        }
+    }
+    public void addDex(){
+        if(stats>0){
+            stats--;
+            accuracy+=5;
+            defense+=2;
+            dexterity++;
+        }
+    }
+    public void addAgi(){
+        if(stats>0){
+            stats--;
+            criticalChance+=1;
+            dodge+=1;
+            agility++;
+        }
+    }
+    public void addLuk(){
+        if(stats>0){
+            stats--;
+            dodge+=1;
+            criticalDamage+=1;
+            luck++;
+        }
+    }
+    
     public int getLevel() {
         return level;
     }
