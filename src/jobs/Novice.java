@@ -16,6 +16,7 @@ public class Novice extends Job{
 
     public Novice(MyCharacter myChar) {
         super(myChar,"Novice","Kick","Stomp","Slap","Gash");
+        super.setSkillCost(9,12,3,15);
     }
 
     @Override

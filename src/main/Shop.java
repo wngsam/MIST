@@ -38,7 +38,7 @@ public class Shop {
     public void buyWeapon(MyCharacter myChar){
         if(myChar.getWeaponCounter()<5){
             Weapon weapon = GearGenerator.getNoviceWeapons()[myChar.getWeaponCounter()];
-            if(myChar.getLevel()<=weapon.getLevelReq()&&myChar.getGold()>=weapon.getCost()){
+            if(myChar.getLevel()>=weapon.getLevelReq()&&myChar.getGold()>=weapon.getCost()){
                 myChar.subtractGold(weapon.getCost());
                 myChar.setWeapon(weapon);
                 myChar.setWeaponCounter(myChar.getWeaponCounter()+1);
@@ -49,7 +49,7 @@ public class Shop {
     public void buyArmor(MyCharacter myChar){
         if(myChar.getArmorCounter()<3){
             Armor armor = GearGenerator.getNoviceArmors()[myChar.getArmorCounter()];
-            if(myChar.getLevel()<=armor.getLevelReq()&&myChar.getGold()>=armor.getCost()){
+            if(myChar.getLevel()>=armor.getLevelReq()&&myChar.getGold()>=armor.getCost()){
                 myChar.subtractGold(armor.getCost());
                 myChar.setArmor(armor);
                 myChar.setArmorCounter(myChar.getArmorCounter()+1);

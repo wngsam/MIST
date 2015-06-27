@@ -46,6 +46,19 @@ public class MyCharacter {
     private int armorCounter=0;
     private Job job = new Novice(this);
     
+    public void addGold(int amt){
+        gold+=amt;
+    }
+    
+    public void addExp(int amt){
+        exp+=amt;
+    }
+    
+    public void refreshHPMP(){
+        currentHealth=health;
+        currentMana=mana;
+    }
+    
     public void subtractCurrentHP(int amt){
         currentHealth-=amt;
     }

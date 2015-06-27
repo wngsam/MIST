@@ -40,6 +40,11 @@ public abstract class Monster {
     private String skillNameDelta;
     private String skillNameEpsilon;
     
+    private int skillCostAlpha;
+    private int skillCostBeta;
+    private int skillCostDelta;
+    private int skillCostEpsilon;
+    
     //Chance to use skills. Totals <100 (the rest is normal atk chance). Use as percentage.
     private int alphaChance;
     private int betaChance;
@@ -74,6 +79,29 @@ public abstract class Monster {
     public abstract int useSkillDelta();
     public abstract int useSkillEpsilon();
 
+    public int getSkillCostAlpha() {
+        return skillCostAlpha;
+    }
+
+    public int getSkillCostBeta() {
+        return skillCostBeta;
+    }
+
+    public int getSkillCostDelta() {
+        return skillCostDelta;
+    }
+
+    public int getSkillCostEpsilon() {
+        return skillCostEpsilon;
+    }
+    
+    public void setSkillCost(int a, int b, int d, int e){
+        skillCostAlpha=a;
+        skillCostBeta=b;
+        skillCostDelta=d;
+        skillCostEpsilon=e;
+    }
+    
     public void setStats(int str, int mag, int dex, int agi, int luk){
             damage+=(5*str);
             health+=(5*str);

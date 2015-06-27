@@ -16,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import jobs.Job;
+import monsters.Monster;
 import player.MyCharacter;
 
 /**
@@ -36,7 +38,7 @@ public class SceneGenerator {
         fight.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //primaryStage.setTitle("Mist Fight!");
+                primaryStage.setScene(startFight());
             }
         });
         buttons[0]=fight;
@@ -45,7 +47,6 @@ public class SceneGenerator {
         shop.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //primaryStage.setTitle("Buying!");
                 primaryStage.setScene(viewShop());
             }
         });
@@ -55,7 +56,6 @@ public class SceneGenerator {
         stats.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //primaryStage.setTitle("Viewing Stats!");
                 primaryStage.setScene(characterPage());
             }
         });
@@ -80,6 +80,133 @@ public class SceneGenerator {
         mainScene = new Scene(vbox, 800, 600);
         primaryStage.setScene(mainScene);
         primaryStage.show();
+    }
+    
+    public VBox finish(String msg){
+        VBox page = new VBox();
+        page.getChildren().add(new Label(msg));
+        Button exit = new Button("EXIT");
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(mainScene);
+            }
+        });
+        page.getChildren().add(exit);
+        return page;
+    }
+    
+    public VBox fighting(String msg, Monster monster){
+        VBox page = new VBox();
+        MyCharacter myChar = driver.getPlayer();
+        
+        if(monster.getCurrentHealth()<=0){
+            return finish(msg);
+        }else if(myChar.getCurrentHealth()<=0){
+            myChar.subtractGold(myChar.getGold());
+            return finish(monster.getName()+" has slained you! You will now lose all your gold.");
+        }
+        
+        page.getChildren().add(new Label(msg));
+        HBox statsSplit = new HBox();
+        
+        Job job = myChar.getJob();
+        
+        statsSplit.getChildren().add(new Label(
+                "Level: "+myChar.getLevel()+"\n"
+                +"HP: "+myChar.getCurrentHealth()+"\n"
+                +"MP: "+myChar.getCurrentMana()+"\n"
+        ));
+        
+        statsSplit.getChildren().add(new Label(
+                "Level: "+monster.getLevel()+" "+monster.getName()+"\n"
+                +"HP: "+monster.getCurrentHealth()+"\n"
+                +"MP: "+monster.getCurrentMana()+"\n"
+        ));
+        
+        page.getChildren().add(statsSplit);
+        
+        HBox skills = new HBox();
+        
+        Button attack = new Button("ATTACK");
+        attack.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(new Scene(fighting(driver.battle(job.attack(), monster),monster), 800, 600));
+            }
+        });
+        skills.getChildren().add(attack);
+        
+        Button alphaSkill = new Button(job.getSkillNameAlpha()+" - MP: "+job.getSkillCostAlpha());
+        if(myChar.getCurrentMana()<job.getSkillCostAlpha()){
+            alphaSkill.setDisable(true);
+        }
+        alphaSkill.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //myChar.subtractCurrentMP(job.getSkillCostAlpha());
+                primaryStage.setScene(new Scene(fighting(driver.battle(job.useSkillAlpha(), monster),monster), 800, 600));
+            }
+        });
+        skills.getChildren().add(alphaSkill);
+        
+        Button betaSkill = new Button(job.getSkillNameBeta()+" - MP: "+job.getSkillCostBeta());
+        if(myChar.getCurrentMana()<job.getSkillCostBeta()){
+            betaSkill.setDisable(true);
+        }
+        betaSkill.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //myChar.subtractCurrentMP(job.getSkillCostBeta());
+                primaryStage.setScene(new Scene(fighting(driver.battle(job.useSkillBeta(), monster),monster), 800, 600));
+            }
+        });
+        skills.getChildren().add(betaSkill);
+        
+        Button deltaSkill = new Button(job.getSkillNameDelta()+" - MP: "+job.getSkillCostDelta());
+        if(myChar.getCurrentMana()<job.getSkillCostDelta()){
+            deltaSkill.setDisable(true);
+        }
+        deltaSkill.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //myChar.subtractCurrentMP(job.getSkillCostDelta());
+                primaryStage.setScene(new Scene(fighting(driver.battle(job.useSkillDelta(), monster),monster), 800, 600));
+            }
+        });
+        skills.getChildren().add(deltaSkill);
+        
+        Button epsilonSkill = new Button(job.getSkillNameEpsilon()+" - MP: "+job.getSkillCostEpsilon());
+        if(myChar.getCurrentMana()<job.getSkillCostEpsilon()){
+            epsilonSkill.setDisable(true);
+        }
+        epsilonSkill.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //myChar.subtractCurrentMP(job.getSkillCostEpsilon());
+                primaryStage.setScene(new Scene(fighting(driver.battle(job.useSkillEpsilon(), monster),monster), 800, 600));
+            }
+        });
+        skills.getChildren().add(epsilonSkill);
+        
+        page.getChildren().add(skills);
+        
+        Button exit = new Button("EXIT");
+        exit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                primaryStage.setScene(mainScene);
+            }
+        });
+        page.getChildren().add(exit);
+        
+        return page;
+    }
+    
+    public Scene startFight(){
+        driver.getPlayer().refreshHPMP();
+        Monster monster = driver.getMonGen().generate(driver.getPlayer().getLevel());
+        return new Scene(fighting("START THE FIGHT!",monster), 800, 600);
     }
     
     public Scene viewShop(){

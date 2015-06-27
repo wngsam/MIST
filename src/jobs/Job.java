@@ -22,6 +22,11 @@ public abstract class Job {
     private String skillNameDelta;
     private String skillNameEpsilon;
     
+    private int skillCostAlpha;
+    private int skillCostBeta;
+    private int skillCostDelta;
+    private int skillCostEpsilon;
+    
     public abstract int attack();
     public abstract int useSkillAlpha();
     public abstract int useSkillBeta();
@@ -36,7 +41,30 @@ public abstract class Job {
         this.skillNameDelta=skillNameDelta;
         this.skillNameEpsilon=skillNameEpsilon;
     }
+    
+    public void setSkillCost(int a, int b, int d, int e){
+        skillCostAlpha=a;
+        skillCostBeta=b;
+        skillCostDelta=d;
+        skillCostEpsilon=e;
+    }
+    
+    public int getSkillCostAlpha() {
+        return skillCostAlpha;
+    }
 
+    public int getSkillCostBeta() {
+        return skillCostBeta;
+    }
+
+    public int getSkillCostDelta() {
+        return skillCostDelta;
+    }
+
+    public int getSkillCostEpsilon() {
+        return skillCostEpsilon;
+    }
+    
     public MyCharacter getMyChar() {
         return myChar;
     }
