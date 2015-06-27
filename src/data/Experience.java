@@ -5,10 +5,24 @@
  */
 package data;
 
+import static java.lang.Math.sqrt;
+import player.MyCharacter;
+
 /**
  *
  * @author Desktop
  */
 public class Experience {
+    
+    public Boolean calculateLevel(MyCharacter myChar){
+        Boolean leveled = false;
+        int calcLevel = (int) ((sqrt(myChar.getExp())/10)+1);
+        int levelDiff = calcLevel-myChar.getLevel();
+        if(levelDiff>0){
+            myChar.levelUp(levelDiff);
+            leveled=true;
+        }
+        return leveled;
+    }
     
 }

@@ -102,7 +102,9 @@ public class Driver {
             enemy+="is dead!\nYou get "+m.getExpReward()+"EXP and "+m.getGoldDrop()+" Gold!";
             player.addGold(m.getGoldDrop());
             player.addExp(m.getExpReward());
-            //LEVEL?
+            if(expChart.calculateLevel(player)){
+                enemy+="\n Congratulation, you leveled!";
+            }
         }
         
         return you+"\n"+enemy;

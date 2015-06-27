@@ -46,6 +46,11 @@ public class MyCharacter {
     private int armorCounter=0;
     private Job job = new Novice(this);
     
+    public void levelUp(int amt){
+        level+=amt;
+        stats+=(amt*5);
+    }
+    
     public void addGold(int amt){
         gold+=amt;
     }

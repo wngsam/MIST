@@ -19,7 +19,7 @@ public class Lifter extends Monster{
         super.setCurrentMana(30);
         super.setStats(level*3,level*0,level*2,level*0,level*0);
         super.setGoldDrop(level+5);
-        super.setExpReward(level+10);
+        super.setExpReward(level+20);
         super.setSkillCost(5,10,7,15);
     }
     
