@@ -5,14 +5,17 @@
  */
 package monsters;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author Desktop
  */
 public abstract class Monster {
     
-    private String picture;
     private String name;
+    private ImageView picture;
     private int level; //Determines Stats.
     private int goldDrop; //Dependent on Level.
     private int expReward; //Dependent on Level.
@@ -53,6 +56,7 @@ public abstract class Monster {
 
     public Monster(String name, int level, int health, int mana, int damage, int defense, int dodge, int accuracy, int magicDamage, int criticalChance, int criticalDamage, String skillNameAlpha, String skillNameBeta, String skillNameDelta, String skillNameEpsilon, int alphaChance, int betaChance, int deltaChance, int epsilonChance) {
         this.name = name;
+        picture = new ImageView(new Image("file:"+name+".jpg"));
         this.level = level;
         this.health = health;
         this.mana = mana;
@@ -146,14 +150,16 @@ public abstract class Monster {
     public void subtractCurrentMP(int amt){
         currentMana-=amt;
     }
-    
-    public String getPicture() {
+
+    public ImageView getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(ImageView picture) {
         this.picture = picture;
     }
+    
+    
 
     public String getName() {
         return name;

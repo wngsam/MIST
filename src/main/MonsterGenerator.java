@@ -5,8 +5,11 @@
  */
 package main;
 
+import java.util.Random;
+import monsters.BoxMan;
 import monsters.Lifter;
 import monsters.Monster;
+import monsters.TreasureMonster;
 
 /**
  *
@@ -15,6 +18,12 @@ import monsters.Monster;
 public class MonsterGenerator {
     
     public Monster generate(int level){
+        if(new Random().nextInt(100)+1<=10){
+            return new TreasureMonster(level);
+        }
+        if(level>=3){
+            return new BoxMan(level);
+        }
         return new Lifter(level);
     }
     

@@ -124,6 +124,8 @@ public class SceneGenerator {
                 +"MP: "+monster.getCurrentMana()+"\n"
         ));
         
+        statsSplit.getChildren().add(monster.getPicture());
+        
         page.getChildren().add(statsSplit);
         
         HBox skills = new HBox();

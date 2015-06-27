@@ -14,12 +14,12 @@ import java.util.Random;
 public class Lifter extends Monster{
 
     public Lifter(int level) {
-        super("The Gymbro", level, 200, 30, 50, 20, 0, 125, 0, 0, 0, "Dumbbell Throw", "Barbell Smash", "Crossfit Toss", "SQUAT YOU", 25, 10, 10, 5);
+        super("The Gym Bro", level, 200, 30, 50, 20, 0, 125, 0, 0, 0, "Dumbbell Throw", "Barbell Smash", "Crossfit Toss", "SQUAT YOU", 25, 10, 10, 5);
         super.setCurrentHealth(200);
         super.setCurrentMana(30);
         super.setStats(level*3,level*0,level*2,level*0,level*0);
         super.setGoldDrop(level+5);
-        super.setExpReward(level+20);
+        super.setExpReward(level+25);
         super.setSkillCost(5,10,7,15);
     }
     
